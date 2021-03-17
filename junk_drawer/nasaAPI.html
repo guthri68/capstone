@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<HTMl>
+    <title>NASA API FOR CAPSTONE</title>
+<head>
+
+</head>
+<body>
+    <h2>The HttpRequest Object</h2>
+    
+    <button type="button" onclick="earth()">EARTH data</button>
+    <button type="button" onclick="apod()">APOD data</button>
+    
+    <p id="earth"></p>
+    <p id="apod"></p>
+    
+            <script>
+                function earth() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("earth").innerHTML = this.responseText;
+                    const obj = JSON.parse(this.responseText);
+                    console.log(obj);
+                    }
+                };
+
+                xhttp.open("GET","https://api.nasa.gov/planetary/earth/assets?lon=-95.33&lat=29.78&date=2018-01-01&&dim=0.10&api_key=VpSPFEEvHKaceHZ1BHE1wp0gEFbeDAp0ggrUKu0R", true);
+                xhttp.send();          
+                }
+
+            </script>
+
+    <br><br>
+
+            <script>
+                function apod() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("apod").innerHTML = this.responseText;
+                        const obj = JSON.parse(this.responseText);
+                        console.log(obj);
+                    }
+                    };
+                    xhttp.open("GET","https://api.nasa.gov/planetary/apod?api_key=VpSPFEEvHKaceHZ1BHE1wp0gEFbeDAp0ggrUKu0R", true);
+                    xhttp.send();             
+                }
+            </script>
+
+        <br><br>
+        
+    </body>
+</html>
